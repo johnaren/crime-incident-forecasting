@@ -1,0 +1,8 @@
+.*
+**/__pycache__
+uv.lock
+data
+statistics
+notebooks/test.ipynb
+
+!.gitignore
