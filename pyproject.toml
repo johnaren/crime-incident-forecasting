@@ -1,0 +1,18 @@
+[project]
+name = "crime-incident-forecasting"
+version = "0.0.0"
+requires-python = ">=3.13"
+dependencies = [
+    "hopsworks[python]",
+    "ipywidgets>=8.1.9",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.2",
+    "python-dotenv>=1.2.4",
+]
+
+[contact]
+name = "Johannes"
+email = "johannes.arenander@gmail.com"
+
+[urls]
+repository = "https://github.com/johnaren/crime-incident-forecasting"
