@@ -1,13 +1,20 @@
 [project]
 name = "crime-incident-forecasting"
 version = "0.0.0"
-requires-python = ">=3.13"
+requires-python = ">=3.14"
 dependencies = [
-    "hopsworks[python]",
+    "hopsworks[python]>=5.2.3",
+    "ipykernel>=7.4.0",
     "ipywidgets>=8.1.9",
     "jupyter>=1.1.1",
     "matplotlib>=3.11.2",
+    "numpy>=2.4.6",
+    "pandas>=2.3.3",
     "python-dotenv>=1.2.4",
+    "scikit-learn>=1.9.1",
+    "sentence-transformers>=6.2.0",
+    "torch>=2.15.0",
+    "torchvision>=0.29.2",
 ]
 
 [contact]
@@ -16,3 +23,7 @@ email = "johannes.arenander@gmail.com"
 
 [urls]
 repository = "https://github.com/johnaren/crime-incident-forecasting"
+
+[[tool.uv.index]]
+name = "pytorch"
+url = "https://download.pytorch.org/whl/cu134"
