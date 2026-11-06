@@ -4,5 +4,6 @@ uv.lock
 data
 statistics
 notebooks/test.ipynb
+models
 
 !.gitignore
