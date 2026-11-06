@@ -1,6 +1,8 @@
 import tomllib
 from pathlib import Path
 
+import torch
+
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -28,3 +30,4 @@ USER_AGENT = (
         f"; contact: {pyproject.contact.email}"
     ")"
 )
+DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

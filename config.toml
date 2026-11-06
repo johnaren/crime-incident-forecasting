@@ -1,0 +1,26 @@
+[data]
+labels = [
+    "violent crime: threats, assault, abuse, kidnap, murder, manslaughter",
+    "property crime: theft, robbery, burglary, vandalism",
+    "economic crime: fraud, forgery, embezzlement, money laundering",
+    "sexual crime: molestation, violation, rape",
+    "weapon offences: firearms, knives, explosives",
+    "drug and alcohol offences: intoxication, narcotics",
+    "traffic incidents: traffic accidents, traffic obstructions, drunk driving, reckless driving",
+    "fire: blaze, flames, wildfire, arson, torching",
+    "accidents: illness, injuries, medical emergencies, rescue operations, missing people",
+    ]
+exclude_type_keywords = [
+    "sammanfattning",
+    "övrigt",
+    "djur",
+    "polisinsats",
+    "kontroll",
+]
+
+[models]
+dir = "models"
+
+[models.transformer]
+name = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+batch_size = 1024

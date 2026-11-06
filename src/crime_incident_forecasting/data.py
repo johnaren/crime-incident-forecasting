@@ -1,4 +1,4 @@
-from crime_incident_forecasting.config import USER_AGENT
+from crime_incident_forecasting.config import USER_AGENT, config
 
 from io import BytesIO
 import requests
@@ -53,3 +53,7 @@ def get_events() -> pd.DataFrame:
         del event["location"]
     df = pd.DataFrame(events)
     return df
+
+
+def get_labels() -> list[str]:
+    return config.data.labels

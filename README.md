@@ -16,4 +16,6 @@ There are historically 95+ categories of events, which are too fine-grained for 
 
 ![Event type distribution](figures/event_type_distribution.png)
 
-Instead, the event types will mapped to broader and more useful classes using semantic embeddings of the types and the descriptions provided in each event.
+Instead, the event types will be filtered and mapped to broader and more useful classes using semantic embeddings of the types and the descriptions provided in each event.
+
+![Event type distribution](figures/event_label_distribution.png)
