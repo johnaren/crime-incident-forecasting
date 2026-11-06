@@ -12,10 +12,10 @@ One potential method could be to use daily weather forecasts to predict the risk
 
 The API only retrieves recent events. However, a public archive of events is available at [https://github.com/dnouri/polisen-se-events-history/] thanks to Daniel Nouri.
 
-There are historically 95+ categories of events, which are too fine-grained for the goal of this project. 
+There are historically 95+ categories of events, which are too fine-grained for the goal of this project.
 
 ![Event type distribution](figures/event_type_distribution.png)
 
 Instead, the event types will be filtered and mapped to broader and more useful classes using semantic embeddings of the types and the descriptions provided in each event.
 
-![Event type distribution](figures/event_label_distribution.png)
+![Event label distribution](figures/event_label_distribution.png)
