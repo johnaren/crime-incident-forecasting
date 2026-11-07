@@ -19,3 +19,7 @@ There are historically 95+ categories of events, which are too fine-grained for 
 Instead, the event types will be filtered and mapped to broader and more useful classes using semantic embeddings of the types and the descriptions provided in each event.
 
 ![Event label distribution](figures/event_label_distribution.png)
+
+Some categories are not present from earlier years so filtering from 2024 result in good looking distributions for their daily frequencies.
+
+![Event label daily frequency bar plots](figures/event_label_daily_frequency_bars.png)
