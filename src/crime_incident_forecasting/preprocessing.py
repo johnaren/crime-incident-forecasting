@@ -29,7 +29,7 @@ def map_label(
 def map_region(municipality: list[str]) -> list[str]:
     regions = get_regions()
     to_county = {
-        str.lower(k): str.capitalize(v)
+        str.lower(k): str.title(v)
         for k, v in zip(regions["Municipality"], regions["County"])
     }
     out = []
@@ -39,6 +39,6 @@ def map_region(municipality: list[str]) -> list[str]:
             for county in regions["County"]:
                 county = str.lower(county)
                 if county in name:
-                    to_county[name] = str.capitalize(county)
+                    to_county[name] = str.title(county)
         out.append(to_county[name])
     return out
