@@ -34,11 +34,11 @@ def map_region(municipality: list[str]) -> list[str]:
     }
     out = []
     for name in municipality:
-        name = name.lower()
+        name = str.lower(name)
         if name not in to_county:
             for county in regions["County"]:
-                county = county.lower()
+                county = str.lower(county)
                 if county in name:
-                    to_county[name] = county.capitalize()
+                    to_county[name] = str.capitalize(county)
         out.append(to_county[name])
     return out
