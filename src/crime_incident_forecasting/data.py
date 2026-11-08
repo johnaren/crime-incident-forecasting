@@ -8,8 +8,12 @@ import pandas as pd
 
 
 def get_events_archive() -> pd.DataFrame:
+    url = (
+        "https://github.com/dnouri/polisen-se-events-history"
+        "/releases/download/data-latest/events.parquet"
+    )
     response = requests.get(
-        url="https://github.com/dnouri/polisen-se-events-history/releases/download/data-latest/events.parquet",
+        url,
         headers={
             "User-Agent": USER_AGENT,
         },
