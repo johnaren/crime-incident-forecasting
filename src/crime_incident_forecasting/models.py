@@ -1,10 +1,6 @@
 from crime_incident_forecasting.config import config, DEVICE, ROOT
 
-from typing import Callable
-
 from sentence_transformers import SentenceTransformer
-
-import torch
 
 
 def get_transformer() -> SentenceTransformer:
