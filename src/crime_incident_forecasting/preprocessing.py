@@ -39,6 +39,6 @@ def map_region(municipality: list[str]) -> list[str]:
             for county in regions["County"]:
                 county = county.lower()
                 if county in name:
-                    to_county[name] = county.title()
+                    to_county[name] = county.capitalize()
         out.append(to_county[name])
     return out
