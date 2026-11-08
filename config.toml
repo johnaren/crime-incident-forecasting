@@ -18,6 +18,10 @@ exclude_type_keywords = [
     "kontroll",
 ]
 
+[regions]
+dir = "data"
+name = "regions.csv"
+
 [models]
 dir = "models"
 

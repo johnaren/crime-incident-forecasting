@@ -20,6 +20,10 @@ Instead, the event types will be filtered and mapped to broader and more useful 
 
 ![Event label distribution](figures/event_label_distribution.png)
 
-Some categories are not present from earlier years so filtering from 2024 result in good looking distributions for their daily frequencies.
+Some categories are not present from earlier years so filtering from 2024 result in good looking distributions of their daily frequencies.
 
 ![Event label daily frequency bar plots](figures/event_label_daily_frequency_bars.png)
+
+There are also 300+ locations which will be mapped to 21 counties.
+
+![Event region distribution](figures/event_region_distribution.png)

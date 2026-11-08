@@ -1,7 +1,8 @@
-from crime_incident_forecasting.config import USER_AGENT, config
+from crime_incident_forecasting.config import ROOT, USER_AGENT, config
 
 from io import BytesIO
 import requests
+from pathlib import Path
 
 import pandas as pd
 
@@ -57,3 +58,33 @@ def get_events() -> pd.DataFrame:
 
 def get_labels() -> list[str]:
     return config.data.labels
+
+
+def get_regions(download: bool = False) -> pd.DataFrame:
+    path = Path(ROOT, config.regions.dir, config.regions.name)
+    if not download and path.exists():
+        return pd.read_csv(path)
+    url = (
+        "https://scb.se"
+        "/contentassets/6a74a52b28994e2bbe23dcdd6754987c/knkopplingar_2026.xlsx"
+    )
+    response = requests.get(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+        },
+    )
+    response.raise_for_status()
+    print(f"Downloaded from {url}")
+    df = pd.read_excel(BytesIO(response.content))
+    df.columns = df.iloc[8].values
+    df = (
+        df
+        .dropna()
+        .drop(index=[6, 8])
+        .reset_index(drop=True)
+    )
+    df = df[["County", "Municipality"]]
+    df.to_csv(path, index=False)
+    print(f"Saved to {path}")
+    return df

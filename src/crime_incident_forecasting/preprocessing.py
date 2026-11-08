@@ -1,9 +1,9 @@
 from crime_incident_forecasting.config import config
-from crime_incident_forecasting.data import get_labels
+from crime_incident_forecasting.data import get_labels, get_regions
 from crime_incident_forecasting.models import get_transformer
 
 
-def map_event(
+def map_label(
         type: list[str],
         description: list[str],
 ) -> dict[str, list]:
@@ -24,3 +24,21 @@ def map_event(
         "label": [labels[i] for i in result.indices],
         "similarity": result.values,
     }
+
+
+def map_region(municipality: list[str]) -> list[str]:
+    regions = get_regions()
+    to_county = {
+        str.lower(k): str.title(v)
+        for k, v in zip(regions["Municipality"], regions["County"])
+    }
+    out = []
+    for name in municipality:
+        name = name.lower()
+        if name not in to_county:
+            for county in regions["County"]:
+                county = county.lower()
+                if county in name:
+                    to_county[name] = county.title()
+        out.append(to_county[name])
+    return out
