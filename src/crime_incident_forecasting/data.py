@@ -137,6 +137,10 @@ def get_weather_archive(
     path = Path(ROOT, config.data.dir, config.data.weather_archive.name)
     if not download and path.exists():
         return pd.read_parquet(path)
+    if download and names and len(coords) != len(names):
+        raise ValueError(
+            f"Length {len(coords)} not equal to length {len(names)}."
+        )
     lats = []
     lons = []
     for x in coords:
@@ -166,9 +170,11 @@ def get_weather_archive(
     )
     response.raise_for_status()
     dfs = []
-    for i, data in enumerate(response.json()):
+    data = response.json()
+    for i, data in enumerate(data):
         df = pd.DataFrame(data["daily"])
-        df["name"] = names[i]
+        if names is not None:
+            df["name"] = names[i]
         df["gps"] = coords[i]
         dfs.append(df)
     df: pd.DataFrame = pd.concat(dfs, ignore_index=True)
