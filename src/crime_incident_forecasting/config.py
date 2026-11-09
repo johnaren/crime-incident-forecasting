@@ -27,7 +27,6 @@ USER_AGENT = (
     f"{pyproject.project.name}/{pyproject.project.version} "
     "("
         f"{pyproject.urls.repository}"
-        f"; contact: {pyproject.contact.email}"
     ")"
 )
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"

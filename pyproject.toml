@@ -19,10 +19,6 @@ dependencies = [
     "torchvision>=0.29.2",
 ]
 
-[contact]
-name = "Johannes"
-email = "johannes.arenander@gmail.com"
-
 [urls]
 repository = "https://github.com/johnaren/crime-incident-forecasting"
 
