@@ -97,7 +97,7 @@ def get_regions(download: bool = False) -> pd.DataFrame:
         .drop(index=[6, 8])
         .reset_index(drop=True)
     )
-    df = df[["County", "Municipality"]]
+    df = df[["Municipality", "County"]]
     df.to_csv(path, index=False)
     print(f"Saved to {path}")
     return df
