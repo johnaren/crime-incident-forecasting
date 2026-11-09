@@ -101,3 +101,76 @@ def get_regions(download: bool = False) -> pd.DataFrame:
     df.to_csv(path, index=False)
     print(f"Saved to {path}")
     return df
+
+
+def get_geodata(
+        regions: list[str] = None,
+        download: bool = False
+        ) -> pd.DataFrame:
+    path = Path(ROOT, config.data.dir, config.data.geodata.name)
+    if not download and path.exists():
+        return pd.read_csv(path)
+    if regions is None:
+        raise ValueError("Requires regions to download.")
+    geolocator = Nominatim(user_agent=USER_AGENT)
+    locations = []
+    for name in tqdm(regions):
+        _, location = geolocator.geocode(query=name)
+        location = ",".join(str(x) for x in location)
+        locations.append(location)
+        time.sleep(1)
+    df = pd.DataFrame({
+        "name": regions,
+        "gps": locations,
+    })
+    df.to_csv(path, index=False)
+    return df
+
+
+def get_weather_archive(
+        coords: list[str] = None,
+        names: list[str] = None,
+        start: str = None,
+        end: str = None,
+        download: bool = False,
+        ) -> list[pd.DataFrame]:
+    path = Path(ROOT, config.data.dir, config.data.weather_archive.name)
+    if not download and path.exists():
+        return pd.read_parquet(path)
+    lats = []
+    lons = []
+    for x in coords:
+        lat, lon = x.split(",")
+        lats.append(float(lat))
+        lons.append(float(lon))
+    if end is None:
+        end = date.today()
+    if start is None:
+        start = end
+    response = requests.get(
+        url="https://archive-api.open-meteo.com/v1/archive",
+        headers={
+            "User-Agent": USER_AGENT,
+        },
+        params = {
+            "latitude": lats,
+            "longitude": lons,
+            "start_date": start,
+            "end_date": end,
+            "daily": [
+                "apparent_temperature_mean",
+                "sunshine_duration",
+                "precipitation_sum",
+            ],
+        },
+    )
+    response.raise_for_status()
+    dfs = []
+    for i, data in enumerate(response.json()):
+        df = pd.DataFrame(data["daily"])
+        df["name"] = names[i]
+        df["gps"] = coords[i]
+        dfs.append(df)
+    df: pd.DataFrame = pd.concat(dfs, ignore_index=True)
+    df.to_parquet(path, index=False)
+    return df
