@@ -1,4 +1,5 @@
 [data]
+dir = "data"
 labels = [
     "violent crime: threats, assault, abuse, kidnap, murder, manslaughter",
     "property crime: theft, robbery, burglary, vandalism",
@@ -18,9 +19,17 @@ exclude_type_keywords = [
     "kontroll",
 ]
 
-[regions]
-dir = "data"
+[data.events_archive]
+name = "events_archive.parquet"
+
+[data.regions]
 name = "regions.csv"
+
+[data.geodata]
+name = "geodata.csv"
+
+[data.weather_archive]
+name = "weather_archive.parquet"
 
 [models]
 dir = "models"

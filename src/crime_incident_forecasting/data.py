@@ -3,11 +3,18 @@ from crime_incident_forecasting.config import ROOT, USER_AGENT, config
 from io import BytesIO
 import requests
 from pathlib import Path
+from datetime import date
+import time
 
 import pandas as pd
+from geopy.geocoders import Nominatim
+from tqdm import tqdm
 
 
-def get_events_archive() -> pd.DataFrame:
+def get_events_archive(download: bool = False) -> pd.DataFrame:
+    path = Path(ROOT, config.data.dir, config.data.events_archive.name)
+    if not download and path.exists():
+        return pd.read_parquet(path)
     url = (
         "https://github.com/dnouri/polisen-se-events-history"
         "/releases/download/data-latest/events.parquet"
@@ -39,7 +46,9 @@ def get_events_archive() -> pd.DataFrame:
         "location_name",
         "location_gps",
     ]
-    return df[columns]
+    df = df[columns]
+    df.to_parquet(path, index=False)
+    return df
 
 
 def get_events() -> pd.DataFrame:
@@ -65,7 +74,7 @@ def get_labels() -> list[str]:
 
 
 def get_regions(download: bool = False) -> pd.DataFrame:
-    path = Path(ROOT, config.regions.dir, config.regions.name)
+    path = Path(ROOT, config.data.dir, config.data.regions.name)
     if not download and path.exists():
         return pd.read_csv(path)
     url = (
