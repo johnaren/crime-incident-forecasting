@@ -19,6 +19,13 @@ exclude_type_keywords = [
     "kontroll",
 ]
 
+[data.weather]
+features = [
+    "apparent_temperature_mean",
+    "sunshine_duration",
+    "precipitation_sum",
+]
+
 [data.events_archive]
 name = "events_archive.parquet"
 

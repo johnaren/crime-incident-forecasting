@@ -139,11 +139,7 @@ def get_weather_archive(
             "longitude": lons,
             "start_date": start,
             "end_date": end,
-            "daily": [
-                "apparent_temperature_mean",
-                "sunshine_duration",
-                "precipitation_sum",
-            ],
+            "daily": config.data.weather.features,
         },
     )
     response.raise_for_status()
